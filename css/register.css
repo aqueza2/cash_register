@@ -1,0 +1,44 @@
+.mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.mdl-layout__content {
+	padding: 24px;
+}
+
+.mdl-card{
+	width: 355px;
+}
+
+.mdl-textfield{
+	width: 100%;
+}
+
+.mdl-textfield .mdl-button {
+    position: relative;
+    bottom: 10px;
+    text-align: right;
+    float: right;
+		margin-left: 10px;
+}
+
+.hide{
+	display: none
+}
+
+.action-description {
+    float: left;
+}
+
+.cash-input{
+	width: 100px;
+}
+
+.other-amount{
+	width: 150px;
+	display: inline;
+}
+
+#transaction-message{
+	height: 20px;
+}
