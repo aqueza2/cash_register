@@ -36,6 +36,9 @@ Register.prototype.findBillIndex = function(billValue){
 Register.prototype.addAmount = function(amount){
   var sortedBills = this.acceptedBills.sort(function(a, b){return b-a});
   var passedAmount = parseInt(amount)
+  if (!passedAmount){
+    return "Please enter an amount to add to the register."
+  }
   var index = 0
   while (passedAmount > 0) {
     if (passedAmount >= sortedBills[index]){
@@ -54,14 +57,16 @@ Register.prototype.withdrawAmount = function(amount){
   if (this.getTotal() < passedAmount){
     return "Transaction Failed! Not enough cash."
   } else {
+    var removedBills = []
     var index = 0
-    while (passedAmount > 0 && index < this.bills.length - 1) {
+    while (passedAmount > 0 && index < this.bills.length) {
       if (passedAmount % 2 != 0){
         var selectedBill = sortedBills.find(function(bill){
           return bill <= passedAmount && bill % 2 != 0
         })
         if (selectedBill != null){
           passedAmount -= selectedBill
+          removedBills.push(selectedBill)
           this.bills.splice(this.findBillIndex(selectedBill), 1)
         } else {
           index += 1
@@ -72,6 +77,7 @@ Register.prototype.withdrawAmount = function(amount){
         })
         if (selectedBill != null){
           passedAmount -= selectedBill
+          removedBills.push(selectedBill)
           this.bills.splice(this.findBillIndex(selectedBill), 1)
         } else {
           index += 1
@@ -81,6 +87,8 @@ Register.prototype.withdrawAmount = function(amount){
     if (passedAmount == 0){
       return "Success! You removed $" + amount + " from the cash register"
     } else{
+      var bills = removedBills.concat(this.bills)
+      this.bills = bills
       return "Transaction failed! Change amount not possible."
     }
   }
