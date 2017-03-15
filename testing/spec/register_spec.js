@@ -9,27 +9,27 @@ describe("Register", function () {
 
     it("can handle a $20 dollar bill", function () {
       register.depositBills(20)
-      expect(register.bills[0].value).toEqual(20);
+      expect(register.bills[0]).toEqual(20);
     });
 
     it("can handle a $10 dollar bill", function () {
       register.depositBills(10)
-      expect(register.bills[1].value).toEqual(10);
+      expect(register.bills[1]).toEqual(10);
     });
 
     it("can handle a $5 dollar bill", function () {
       register.depositBills(5)
-      expect(register.bills[2].value).toEqual(5);
+      expect(register.bills[2]).toEqual(5);
     });
 
     it("can handle a $2 dollar bill", function () {
       register.depositBills(2)
-      expect(register.bills[3].value).toEqual(2);
+      expect(register.bills[3]).toEqual(2);
     });
 
     it("can handle a $1 dollar bill", function () {
       register.depositBills(1)
-      expect(register.bills[4].value).toEqual(1);
+      expect(register.bills[4]).toEqual(1);
     });
 
     it("can return current total value as a string", function () {
@@ -49,6 +49,7 @@ describe("Register", function () {
     it("will not dispense change if you don't have the right amount of bills", function () {
       register.empty()
       register.addAmount("20")
+      console.log(register.bills)
       expect(register.withdrawAmount(19)).toEqual("Transaction failed! Change amount not possible.");
     });
 
@@ -123,6 +124,6 @@ describe("Register", function () {
     it("will not dispense change if the amount is not divisible by the dollar amounts. Example: Make change for $14.  This should fail.", function () {
       expect(register.withdrawAmount(14)).toEqual("Transaction failed! Change amount not possible.");
     });
+    
   });
-
 });
