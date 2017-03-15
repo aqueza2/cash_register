@@ -4,12 +4,14 @@ function Register(){
 }
 
 Register.prototype.depositBills = function(billValue){
-  this.bills.push(billValue)
+  var passedBill = parseInt(billValue)
+  this.bills.push(passedBill)
   return "Success! You added $" + billValue + " to the register."
 }
 
 Register.prototype.withdrawBills = function(billValue){
-  var found = this.findBill(billValue)
+  var passedBill = parseInt(billValue)
+  var found = this.findBill(passedBill)
   if (found) {
     var billIndex = this.findBillIndex(billValue)
     this.bills.splice(billIndex,1)
